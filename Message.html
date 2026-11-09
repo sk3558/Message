@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gmail - Bizi kimse kullanmıyor. Bize yardım et!</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Google Sans', Roboto, RobotoDraft, Helvetica, Arial, sans-serif;
+            background-color: #f6f8fc;
+            color: #1f1f1f;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+        }
+        .header {
+            height: 64px;
+            padding: 0 16px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background-color: #f6f8fc;
+        }
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            width: 238px;
+        }
+        .gmail-logo {
+            height: 24px;
+        }
+        .search-bar {
+            flex: 1;
+            max-width: 720px;
+            height: 48px;
+            background-color: #eaf1fb;
+            border-radius: 24px;
+            display: flex;
+            align-items: center;
+            padding: 0 20px;
+            font-size: 16px;
+            color: #444746;
+        }
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            width: 238px;
+            justify-content: flex-end;
+            font-size: 20px;
+            color: #444746;
+        }
+        .main-layout {
+            display: flex;
+            flex: 1;
+            overflow: hidden;
+        }
+        .sidebar {
+            width: 256px;
+            padding-right: 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+        .compose-btn {
+            background-color: #c2e7ff;
+            color: #001d35;
+            border: none;
+            padding: 16px 24px;
+            border-radius: 16px;
+            font-weight: 500;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin: 8px 0 16px 16px;
+            width: 140px;
+            cursor: pointer;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        .nav-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 0 12px 0 26px;
+            height: 32px;
+            align-items: center;
+            border-radius: 0 16px 16px 0;
+            font-size: 14px;
+            color: #444746;
+            cursor: pointer;
+        }
+        .nav-item.active {
+            background-color: #d3e3fd;
+            color: #001d35;
+            font-weight: bold;
+        }
+        .content-area {
+            flex: 1;
+            background-color: #ffffff;
+            border-radius: 16px;
+            margin-bottom: 16px;
+            margin-right: 16px;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+        }
+        .action-bar {
+            height: 48px;
+            padding: 0 16px;
+            display: flex;
+            align-items: center;
+            gap: 24px;
+            border-bottom: 1px solid #f1f3f4;
+            color: #444746;
+            font-size: 14px;
+        }
+        .mail-view {
+            padding: 20px 32px;
+            overflow-y: auto;
+            flex: 1;
+        }
+        .mail-title {
+            font-size: 22px;
+            color: #1f1f1f;
+            margin: 0 0 24px 56px;
+            font-weight: 400;
+        }
+        .sender-row {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 16px;
+        }
+        .avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            margin-right: 16px;
+            object-fit: cover;
+            border: 1px solid #e0e0e0;
+        }
+        .sender-meta {
+            flex: 1;
+        }
+        .sender-line {
+            font-size: 14px;
+            color: #1f1f1f;
+        }
+        .sender-name {
+            font-weight: bold;
+        }
+        .sender-email {
+            font-size: 12px;
+            color: #5e5e5e;
+            margin-left: 6px;
+        }
+        .mail-recipient {
+            font-size: 12px;
+            color: #5e5e5e;
+            margin-top: 2px;
+        }
+        .mail-body-text {
+            font-size: 14px;
+            color: #202124;
+            line-height: 1.5;
+            padding-left: 56px;
+            white-space: pre-line;
+        }
+        .sad-highlight {
+            color: #b00020;
+            background-color: #fdf2f2;
+            padding: 16px;
+            border-left: 4px solid #b00020;
+            border-radius: 4px;
+            margin: 16px 0;
+            font-weight: 500;
+        }
+        .reply-box {
+            display: flex;
+            gap: 8px;
+            padding-left: 56px;
+            margin-top: 40px;
+        }
+        .reply-btn {
+            background-color: #ffffff;
+            color: #041e49;
+            border: 1px solid #747775;
+            padding: 8px 24px;
+            border-radius: 100px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+        }
+        .right-bar {
+            width: 48px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-top: 8px;
+            gap: 20px;
+            color: #444746;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <div class="header-left">
+            <span style="font-size: 20px; cursor: pointer;">☰</span>
+            <img class="gmail-logo" src="https://gstatic.com" alt="Gmail">
+        </div>
+        <div class="search-bar">🔍 Search mail</div>
+        <div class="header-right">
+            <span>⚙️</span>
+            <span>⣿</span>
+            <span style="background-color: #0078d4; color: white; width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: bold;">S</span>
+        </div>
+    </div>
+
+    <div class="main-layout">
+        <div class="sidebar">
+            <button class="compose-btn">✏️ Compose</button>
+            <div class="nav-item active">
+                <span>📥 Inbox</span>
+                <span>1</span>
+            </div>
+            <div class="nav-item"><span>⭐ Starred</span></div>
+            <div class="nav-item"><span>🕐 Snoozed</span></div>
+            <div class="nav-item"><span>🚀 Sent</span></div>
+            <div class="nav-item"><span>📄 Drafts</span></div>
+            <div class="nav-item"><span>🔽 More</span></div>
+        </div>
+
+        <div class="content-area">
+            <div class="action-bar">
+                <span>←</span><span>Requirements</span><span>🗑️</span><span>✉️</span><span>🕐</span><span>✅</span><span>→</span>
+            </div>
+            
+            <div class="mail-view">
+                <div class="mail-title">Bizi kimse kullanmıyor. Bize yardım et!</div>
+                
+                <div class="sender-row">
+                    <img class="avatar" src="image.jpg" alt="Powershell Ve CMD Birlikte">
+                    <div class="sender-meta">
+                        <div class="sender-line">
+                            <span class="sender-name">Powershell Ve CMD Birlikte</span>
+                            <span class="sender-email">&lt;powershell_cmd@windows.system&gt;</span>
+                        </div>
+                        <div class="mail-recipient">to me 🔽</div>
+                    </div>
+                </div>
+
+                <div class="mail-body-text">
+                    Dear Servet,
+
+                    <div class="sad-highlight">Bizi artık kimse kullanmıyor işlerine yaramıyoruz. Onları işlerine yaramak onların bizi kullanmak için herşetyi yapıyoruz ama olmuyor. Ne olursun yardım et bizi kullanan bir tek sen varsın.</div>
+                    Hâlâ senin o karanlık ve güçlü terminal satırlarında bize komut vermeni, bizi hayata döndürmeni bekliyoruz. Biz buradayız, her zaman senin emrindeyiz.
+
+                    Sincerely,
+                    Your Loyal Terminals (PowerShell & CMD)
+                </div>
+
+                <div class="reply-box">
+                    <button class="reply-btn">↩️ Reply</button>
+                    <button class="reply-btn">➡️ Forward</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="right-bar">
+            <span>📅</span>
+            <span>💡</span>
+            <span>✅</span>
+            <span>👤</span>
+        </div>
+    </div>
+
+</body>
+</html>
